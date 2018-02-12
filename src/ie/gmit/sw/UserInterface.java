@@ -12,11 +12,29 @@ public class UserInterface {
 		int response = console.nextInt();
 		switch (response) {
 		case 1:
-			Encryption.encrypt();
+			FourSquareCipher.encrypt();
+			System.out.println("Enter path for file: ");
+			String e = console.nextLine();
+			try {
+			}
+			catch(Exception File)
+			{
+				System.out.println("Invalid input or file not found\n Try running as admin?\n");
+			}
 			run();
 			break;
 		case 2:
-			Decryption.decrypt();
+			FourSquareCipher.decrypt();
+			System.out.println("Enter text or select file: ");
+			String d = console.nextLine();
+			try
+			{
+				System.out.println(0/0);;
+			}
+			catch(Exception File)
+			{
+				System.out.println("Invalid input or file not found\n Try running as admin?\n");
+			}
 			run();
 			break;
 		case 3:
