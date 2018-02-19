@@ -17,13 +17,15 @@ public class FourSquareCipher {
 		};
 	public static StringBuilder encrypt(StringBuilder e) {
 		System.out.println("Encrypting...");
-		//O(N^2)? depends on size of string and loops through array
-		//need to loop through ALL rows and columns
+		/*O(N^2)? depends on size of string and loops through array
+		need to loop through ALL rows and columns
+		need to form bigram
+		*/
 		for(int i = 0; i < e.length(); i++)
 		{
 			for(int j = 0; j < matrix.length; j++)
 			{
-				if(e.charAt(i) == matrix[j][j])
+				if(e.charAt(i) == matrix[i][j])
 				{
 					e.setCharAt(i, matrix[j][j + 5]);
 					break;
