@@ -1,4 +1,5 @@
 package ie.gmit.sw;
+//Code by Ultan Kearns
 
 public class FourSquareCipher {
 	//replace first five letters from rows with letters from last five
@@ -14,30 +15,24 @@ public class FourSquareCipher {
 			{'I', 'T', 'U', 'E', 'W', 'Q', 'R', 'S', 'T', 'U'},
 			{'L', 'Q', 'Z', 'K', 'P', 'V', 'W', 'X', 'Y', 'Z'}
 		};
-	public static StringBuffer encrypt(StringBuffer e) {
+	public static StringBuilder encrypt(StringBuilder e) {
 		System.out.println("Encrypting...");
+		//O(N^2)? depends on size of string and loops through array
+		//need to loop through ALL rows and columns
 		for(int i = 0; i < e.length(); i++)
 		{
-			System.out.println(e.charAt(i) + " " + matrix[i][i]);
-			if(e.charAt(i) == matrix[i][i])
+			for(int j = 0; j < matrix.length; j++)
 			{
-				e.setCharAt(i, matrix[i][i + 5]);
+				if(e.charAt(i) == matrix[j][j])
+				{
+					e.setCharAt(i, matrix[j][j + 5]);
+					break;
+				}
 			}
 		}
-		System.out.println("Encrypted\n");
+		System.out.println("Encrypted String: " + e + "\nEncrypted in: " + System.currentTimeMillis() / 600);
 		return e;
 	}
-	public static StringBuffer decrypt(StringBuffer e) {
-		System.out.println("Decrypting...");
-		for(int i = 0; i < e.length(); i++)
-		{
-			if(e.charAt(i) == matrix[i][i])
-			{
-				e.setCharAt(i, matrix[i][i - 5]);
-			}
-		}
-		System.out.println("Decrypted\n");
-		return e;
-	}
+	
 
 }

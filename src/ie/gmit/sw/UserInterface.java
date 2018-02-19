@@ -1,4 +1,5 @@
 package ie.gmit.sw;
+//Code by Ultan Kearns
 
 import java.util.Scanner;
 
@@ -6,10 +7,10 @@ public class UserInterface {
 	private static Scanner console;
 	static int response;
 	public static void run() {
-		System.out.println("1.Encrypt\n2.Decrypt\n3.Exit");
+		System.out.println("1.Encrypt\n2.Decrypt\n3.Set Keys\n4.Exit");
 		System.out.print("Choose option: ");
 		console = new Scanner(System.in);
-		try {
+		try{
 		 response = console.nextInt();
 		}
 		catch(Exception e)
@@ -19,11 +20,13 @@ public class UserInterface {
 		}
 		switch (response) {
 		case 1:
+			//change to file path also need to specify if URL
 			System.out.println("Enter path for file: ");
-			StringBuffer e = new StringBuffer();
-			e.append(console.next().toUpperCase());
+			console.nextLine();
+			StringBuilder e = new StringBuilder(console.nextLine().toUpperCase());
+			System.out.println(e);
 			try {
-				System.out.println(FourSquareCipher.encrypt(e));
+				FourSquareCipher.encrypt(e);
 			}
 			catch(Exception File)
 			{
@@ -32,10 +35,10 @@ public class UserInterface {
 			run();
 			break;
 		case 2:
+			//Make decrypt class?
 			System.out.println("Enter text or select file: ");
 			StringBuffer d = new StringBuffer();
 		    d.append(console.next().toUpperCase());
-			FourSquareCipher.decrypt(d);
 			try
 			{
 				
@@ -47,7 +50,11 @@ public class UserInterface {
 			run();
 			break;
 		case 3:
-			System.out.println("Exiting...");
+			//allow users to set keys 25 or generate keys yourself use collections.shuffle
+			System.out.println("Set Keys: ");
+			console.nextLine();
+			break;
+		case 4:
 			System.exit(0);
 			break;
 		default:
