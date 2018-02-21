@@ -25,7 +25,7 @@ public class FourSquareCipher {
 		{
 			for(int j = 0; j < matrix.length; j++)
 			{
-				if(e.charAt(i) == matrix[i][j])
+				if(e.charAt(i) == matrix[j][j])
 				{
 					e.setCharAt(i, matrix[j][j + 5]);
 					break;

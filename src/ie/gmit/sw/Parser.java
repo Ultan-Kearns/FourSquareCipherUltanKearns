@@ -7,12 +7,22 @@ public class Parser {
 		 * Due to the fact that it depends on length
 		 * of the object StringBuilder e
 		*/
-		for(int i = 1; i < e.length() + 1; i++)
+		for(int i = 1; i < e.length() - 1; i++)
 		{
-			if(i % 2 == 0)
+			if(e.charAt(i) == ' ')
 			{
-				e.insert(i, ' ');
+				e.deleteCharAt(i);
+				continue;
 			}
+			else if(i % 2 == 0)
+			{
+				e.insert(i,' ');
+			}
+		}
+		//need to remove white space from stringbuilder before appending
+		if(e.length() % 2 != 0)
+		{
+			e.append('Z');
 		}
 		return e;
 	}
