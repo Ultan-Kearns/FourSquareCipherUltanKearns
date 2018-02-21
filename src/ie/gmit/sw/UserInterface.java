@@ -24,8 +24,12 @@ public class UserInterface {
 			System.out.println("Enter path for file: ");
 			console.nextLine();
 			StringBuilder e = new StringBuilder(console.nextLine().toUpperCase());
-			System.out.println(e);
-			Parser.parse(e);
+			String temp = e.toString();
+			temp = temp.replaceAll(" ", "");
+			StringBuilder encrypt = new StringBuilder(temp);
+			System.out.println(encrypt);
+			Parser.parse(encrypt);
+			System.out.println("AFTER PARSE: " + encrypt);
 			try {
 				FourSquareCipher.encrypt(e);
 			}
