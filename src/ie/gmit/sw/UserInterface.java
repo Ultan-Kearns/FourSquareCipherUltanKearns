@@ -27,11 +27,14 @@ public class UserInterface {
 			String temp = e.toString();
 			temp = temp.replaceAll(" ", "");
 			StringBuilder encrypt = new StringBuilder(temp);
+			temp = null; 
+			e = null;
 			System.out.println(encrypt);
 			Parser.parse(encrypt);
 			System.out.println("AFTER PARSE: " + encrypt);
 			try {
-				FourSquareCipher.encrypt(e);
+				FourSquareCipher.encrypt(encrypt);
+				System.out.println(encrypt);
 			}
 			catch(Exception File)
 			{
