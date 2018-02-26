@@ -17,26 +17,40 @@ public class FourSquareCipher {
 		};
 	public static StringBuilder encrypt(StringBuilder e) {
 		System.out.println("Encrypting...");
+		boolean found = false;
 		/* 
 		need to loop through ALL rows and columns
 		need to form bigram
 		*/
-		for(int i = 0; i < e.length(); i++)
+		//for each in string
+		int [] a = new int[3];
+		for(int i = 0; i < e.length() / 2; i = i + 2)
 		{
+			found = false;
 			for(int j = 0; j < 5; j++)
 			{
 				for(int k = 0; k < 5; k++)
 				{
-				if(e.charAt(i) == matrix[k][j])
-				{
-					e.setCharAt(i, matrix[k][j + 5]);
-					break;
+					if(e.charAt(i) == matrix[j][k])
+					{
+						a[0] = k;
+						a[2] = j;
+					}
+					else if(e.charAt(i + 1) == matrix[j + 5][k + 5])
+					{
+						a[1] = k + 5;
+						e.setCharAt(i + 1, matrix[j + 5][a[0]]);
+						found = true;
+						break;
+					}
 				}
+				if(found == true)
+				{
+					e.setCharAt(i, matrix[a[2]][a[1]]);
+					break;
 				}
 			}
 		}
 		return e;
+		}
 	}
-	
-
-}
