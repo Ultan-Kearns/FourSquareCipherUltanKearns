@@ -21,10 +21,12 @@ public class FourSquareCipher {
 		/* 
 		need to loop through ALL rows and columns
 		need to form bigram
+		only works for first line due to j+ 5 could - a[1] but not working
 		*/
-		//for each in string
 		int [] a = new int[3];
-		for(int i = 0; i < e.length() / 2; i = i + 2)
+		System.out.println(e.length());
+		//Worst: O(N) / 3 + 25
+		for(int i = 0; i < e.length(); i = i + 3)
 		{
 			found = false;
 			for(int j = 0; j < 5; j++)
@@ -33,12 +35,15 @@ public class FourSquareCipher {
 				{
 					if(e.charAt(i) == matrix[j][k])
 					{
+						//index of letter 1
 						a[0] = k;
-						a[2] = j;
+						//row of letter 1
+						a[1] = j;
 					}
 					else if(e.charAt(i + 1) == matrix[j + 5][k + 5])
 					{
-						a[1] = k + 5;
+						//index of letter 2
+						a[2] = k + 5;
 						e.setCharAt(i + 1, matrix[j + 5][a[0]]);
 						found = true;
 						break;
@@ -46,11 +51,12 @@ public class FourSquareCipher {
 				}
 				if(found == true)
 				{
-					e.setCharAt(i, matrix[a[2]][a[1]]);
+					e.setCharAt(i, matrix[a[1]][a[2]]);
 					break;
 				}
 			}
 		}
+		a = null;
 		return e;
 		}
 	}
