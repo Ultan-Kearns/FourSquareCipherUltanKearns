@@ -1,6 +1,9 @@
 package ie.gmit.sw;
 //Code by Ultan Kearns
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -22,8 +25,24 @@ public class UserInterface {
 		case 1:
 			//change to file path also need to specify if URL
 			System.out.println("Enter path for file: ");
-			console.nextLine();
-			StringBuilder e = new StringBuilder(console.nextLine().toUpperCase());
+			String fileName = console.next();
+			File file = new File(fileName);
+			StringBuilder e = new StringBuilder();
+			Scanner fileScan;
+			try {
+				fileScan = new Scanner(file);
+				while(fileScan.hasNext())
+				{
+					String line = fileScan.next().toUpperCase();
+					System.out.println(fileScan.next());
+					e.append(line);
+				}
+				fileScan.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				System.out.println("File not found\n");
+				run();
+			}
 			String temp = e.toString();
 			temp = temp.replaceAll(" ", "");
 			StringBuilder encrypt = new StringBuilder(temp);
@@ -31,16 +50,20 @@ public class UserInterface {
 			e = null;
 			System.out.println(encrypt);
 			Parser.parse(encrypt);
-			System.out.println("AFTER PARSE: " + encrypt);
+			System.out.println("AFTER PARSE: " + encrypt);	
 			try {
-				FourSquareCipher.encrypt(encrypt);
-				System.out.println(encrypt);
+				System.out.println("\nPlease enter the directory where you want to save file: ");
+				fileName = console.next();
+				SaveFile.save(fileName,FourSquareCipher.encrypt(encrypt));
+				System.out.println("");
+				run();
+
 			}
-			catch(Exception File)
+			catch(Exception SaveFail)
 			{
 				System.out.println("Invalid input or file not found\n Try running as admin?\n");
+			 
 			}
-			run();
 			break;
 		case 2:
 			//Make decrypt class?

@@ -40,11 +40,11 @@ public class FourSquareCipher {
 						//row of letter 1
 						a[1] = j;
 					}
-					else if(e.charAt(i + 1) == matrix[j + 5][k + 5])
+					else if(e.charAt(i + 1) == matrix[j + 5 - a[1]][k + 5])
 					{
 						//index of letter 2
 						a[2] = k + 5;
-						e.setCharAt(i + 1, matrix[j + 5][a[0]]);
+						e.setCharAt(i + 1, matrix[j + 5 - a[1]][a[0]]);
 						found = true;
 						break;
 					}
