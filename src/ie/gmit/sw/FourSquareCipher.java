@@ -59,4 +59,46 @@ public class FourSquareCipher {
 		a = null;
 		return e;
 		}
+	public static StringBuilder decrypt(StringBuilder d) {
+		boolean found = false;
+		/* 
+		need to loop through ALL rows and columns
+		need to form bigram
+		only works for first line due to j+ 5 could - a[1] but not working
+		*/
+		int [] a = new int[3];
+		//Worst: O(N) / 3 + 25
+		for(int i = 0; i < d.length(); i = i + 3)
+		{
+			found = false;
+			for(int j = 0; j < 5; j++)
+			{
+				for(int k = 0; k < 5; k++)
+				{
+					if(d.charAt(i) == matrix[j][k])
+					{
+						//index of letter 1
+						a[0] = k;
+						//row of letter 1
+						a[1] = j;
+					}
+					else if(d.charAt(i + 1) == matrix[j + 5 - a[1]][k + 5])
+					{
+						//index of letter 2
+						a[2] = k + 5;
+						d.setCharAt(i + 1, matrix[j + 5 - a[1]][a[0]]);
+						found = true;
+						break;
+					}
+				}
+				if(found == true)
+				{
+					d.setCharAt(i, matrix[a[1]][a[2]]);
+					break;
+				}
+			}
+		}
+		a = null;
+		return d;
+	}
 	}
