@@ -1,6 +1,5 @@
 package ie.gmit.sw;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
@@ -11,9 +10,8 @@ public class SaveFile {
 			PrintWriter pw = new PrintWriter(new FileOutputStream(filePath + ".txt"));	
 			pw.println(sb);
 			pw.close();
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			System.out.println("\nCannot create directory\n");
-			e.printStackTrace();
 			UserInterface.run();
 		}
 	}

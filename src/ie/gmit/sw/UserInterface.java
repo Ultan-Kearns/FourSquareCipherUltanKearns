@@ -3,36 +3,40 @@ package ie.gmit.sw;
 import java.util.Scanner;
 
 public class UserInterface {
-	private static Scanner console;
+	
+	private static Scanner input = new Scanner(System.in);
 	static int response;
 	public static void run() {
 		System.out.println("1.Encrypt\n2.Decrypt\n3.Set Keys\n4.Exit");
 		System.out.print("Choose option: ");
-		console = new Scanner(System.in);
 		try{
-		 response = console.nextInt();
+		 response = input.nextInt();
 		}
 		catch(Exception e)
 		{
 			System.out.println("\nInvalid type entered try again");
+			input.nextLine();
 			run();
 		}
 		switch (response) {
 		case 1:
 			//could put these in same class
-			Encrypt.setup();
+			EncryptDecrypt.setup(1);
+			break;
 		case 2:
-			Decrypt.setup();
+			EncryptDecrypt.setup(2);
+			break;
 		case 3:
 			//allow users to set keys 25 or generate keys yourself use collections.shuffle
 			System.out.println("Set Keys: ");
-			console.nextLine();
+			input.nextLine();
 			break;
 		case 4:
 			System.exit(0);
 			break;
 		default:
 			System.out.println("\nInvalid type entered\n");
+			input.nextLine();
 			run();
 		}
 	}

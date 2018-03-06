@@ -24,7 +24,6 @@ public class FourSquareCipher {
 		only works for first line due to j+ 5 could - a[1] but not working
 		*/
 		int [] a = new int[3];
-		System.out.println(e.length());
 		//Worst: O(N) / 3 + 25
 		for(int i = 0; i < e.length(); i = i + 3)
 		{
@@ -82,11 +81,11 @@ public class FourSquareCipher {
 						//row of letter 1
 						a[1] = j;
 					}
-					else if(d.charAt(i + 1) == matrix[j + 5 - a[1]][k + 5])
+					else if(d.charAt(i + 1) == matrix[j - 5 + a[1]][k - 5])
 					{
 						//index of letter 2
-						a[2] = k + 5;
-						d.setCharAt(i + 1, matrix[j + 5 - a[1]][a[0]]);
+						a[2] = k - 5;
+						d.setCharAt(i + 1, matrix[j - 5 + a[1]][a[0]]);
 						found = true;
 						break;
 					}
