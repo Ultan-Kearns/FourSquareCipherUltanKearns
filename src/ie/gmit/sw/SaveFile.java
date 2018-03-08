@@ -7,7 +7,7 @@ public class SaveFile {
 	public static void save(String filePath,StringBuilder sb)
 	{
 		try {
-			PrintWriter pw = new PrintWriter(new FileOutputStream(filePath + ".txt"));	
+			PrintWriter pw = new PrintWriter(new FileOutputStream(filePath));	
 			pw.println(sb);
 			pw.close();
 		} catch (Exception e) {

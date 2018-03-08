@@ -15,13 +15,11 @@ public class UserInterface {
 		catch(Exception e)
 		{
 			System.out.println("\nInvalid type entered try again");
-			input.nextLine();
-			run();
 		}
 		switch (response) {
 		case 1:
-			//could put these in same class
 			EncryptDecrypt.setup(1);
+			input.close();
 			break;
 		case 2:
 			EncryptDecrypt.setup(2);

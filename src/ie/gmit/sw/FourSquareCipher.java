@@ -15,50 +15,36 @@ public class FourSquareCipher {
 			{'I', 'T', 'U', 'E', 'W', 'Q', 'R', 'S', 'T', 'U'},
 			{'L', 'Q', 'Z', 'K', 'P', 'V', 'W', 'X', 'Y', 'Z'}
 		};
-	public static StringBuilder encrypt(StringBuilder e) {
-		System.out.println("Encrypting...");
-		boolean found = false;
+	public static StringBuilder encrypt(int start,StringBuilder e) {
 		/* 
 		need to loop through ALL rows and columns
 		need to form bigram
-		only works for first line due to j+ 5 could - a[1] but not working
 		*/
-		int [] a = new int[3];
-		//Worst: O(N) / 3 + 25
-		for(int i = 0; i < e.length(); i = i + 3)
+		//need to find data structure that will loop only once
+		int line = 0;
+		int positionOfChar[] = new int[4];
+		for(int i = 0; i < 5; i++)
 		{
-			found = false;
-			for(int j = 0; j < 5; j++)
+			System.out.println(i);
+			if(e.charAt(start - 2) == matrix[line][i])
 			{
-				for(int k = 0; k < 5; k++)
-				{
-					if(e.charAt(i) == matrix[j][k])
-					{
-						//index of letter 1
-						a[0] = k;
-						//row of letter 1
-						a[1] = j;
-					}
-					else if(e.charAt(i + 1) == matrix[j + 5 - a[1]][k + 5])
-					{
-						//index of letter 2
-						a[2] = k + 5;
-						e.setCharAt(i + 1, matrix[j + 5 - a[1]][a[0]]);
-						found = true;
-						break;
-					}
-				}
-				if(found == true)
-				{
-					e.setCharAt(i, matrix[a[1]][a[2]]);
-					break;
-				}
+				positionOfChar[0] = line;
+				positionOfChar[1] = i;
+			}
+			else if(e.charAt(start - 1) == matrix[line + 5][i + 5])
+			{
+				positionOfChar[2] = line + 5;
+				positionOfChar[3] = i + 5;
+				e.setCharAt(start - 2,  matrix[positionOfChar[2]][positionOfChar[1]]);
+				e.setCharAt(start - 1, matrix[positionOfChar[0]][positionOfChar[3]]);
+				break;
 			}
 		}
-		a = null;
 		return e;
 		}
 	public static StringBuilder decrypt(StringBuilder d) {
+		//LOGIC WRONG
+		System.out.println("Decrypting...");
 		boolean found = false;
 		/* 
 		need to loop through ALL rows and columns
@@ -74,18 +60,18 @@ public class FourSquareCipher {
 			{
 				for(int k = 0; k < 5; k++)
 				{
-					if(d.charAt(i) == matrix[j][k])
+					if(d.charAt(i) == matrix[j][k + 5])
 					{
 						//index of letter 1
 						a[0] = k;
 						//row of letter 1
 						a[1] = j;
 					}
-					else if(d.charAt(i + 1) == matrix[j - 5 + a[1]][k - 5])
+					else if(d.charAt(i + 1) == matrix[j + 5][k - 5])
 					{
 						//index of letter 2
 						a[2] = k - 5;
-						d.setCharAt(i + 1, matrix[j - 5 + a[1]][a[0]]);
+						d.setCharAt(i + 1, matrix[j + 5][a[0]]);
 						found = true;
 						break;
 					}
@@ -98,6 +84,7 @@ public class FourSquareCipher {
 			}
 		}
 		a = null;
+		System.out.println("Decrypted");
 		return d;
 	}
-	}
+}

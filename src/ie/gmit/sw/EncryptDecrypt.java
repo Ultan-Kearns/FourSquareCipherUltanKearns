@@ -19,7 +19,6 @@ public class EncryptDecrypt {
 			catch(Exception exception)
 			{
 				System.out.println("invalid input");
-				console.nextLine();
 				fileName = console.next();
 			}
 			File file = new File(fileName);
@@ -41,7 +40,7 @@ public class EncryptDecrypt {
 		StringBuilder encrypt = new StringBuilder(temp);
 		temp = null;
 		e = null;
-		System.out.println(encrypt);
+		//System.out.println(encrypt);
 		Parser.parse(encrypt);
 		System.out.println("AFTER PARSE: " + encrypt);
 		System.out.println("\nPlease enter the directory where you want to save file: ");
@@ -49,21 +48,20 @@ public class EncryptDecrypt {
 		try {
 			if(response == 1)
 			{
-			SaveFile.save(fileName, FourSquareCipher.encrypt(encrypt));
+			SaveFile.save(fileName,e);
 			System.out.println("\nFile Saved");
+			UserInterface.run();
 			}
 			else
 			{
 				SaveFile.save(fileName, FourSquareCipher.decrypt(encrypt));
 				System.out.println("\nFile Saved");
+				UserInterface.run();
 			}
-			console.nextLine();
 			console.close();
 		} catch (Exception SaveFail) {
 			System.out.println("Invalid input or file not found\n Try running as admin?\n");
 			console.close();
-			UserInterface.run();
 		}
-		UserInterface.run();
 	}
 }
