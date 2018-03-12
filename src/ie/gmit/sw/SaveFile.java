@@ -1,14 +1,16 @@
 package ie.gmit.sw;
 
-import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class SaveFile {
-	public static void save(String filePath,StringBuilder sb)
+	public static void save(String filePath,StringBuilder sb) throws IOException
 	{
 		try {
-			PrintWriter pw = new PrintWriter(new FileOutputStream(filePath));	
+			PrintWriter pw = new PrintWriter(new FileWriter(filePath));	
 			pw.println(sb);
+			pw.flush();
 			pw.close();
 		} catch (Exception e) {
 			System.out.println("\nCannot create directory\n");
