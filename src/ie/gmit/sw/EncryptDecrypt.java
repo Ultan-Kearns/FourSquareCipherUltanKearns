@@ -48,10 +48,11 @@ public class EncryptDecrypt {
 		System.out.println("Time taken to read in: " + totalTime + " ns");
 		String temp = e.toString();
 		temp = temp.replaceAll("[^a-zA-Z0-9]", "");
+		temp = temp.toUpperCase();
 		StringBuilder encrypt = new StringBuilder(temp);
 		temp = null;
 		e = null;
-		//System.out.println(encrypt);
+		System.out.println("\nPARSING");
 		Parser.parse(encrypt);
 		System.out.println("\nPlease enter the directory where you want to save file: ");
 		fileName = console.next();

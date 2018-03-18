@@ -15,38 +15,46 @@ public class FourSquareCipher {
 			{'I', 'T', 'U', 'E', 'W', 'Q', 'R', 'S', 'T', 'U'},
 			{'L', 'Q', 'Z', 'K', 'P', 'V', 'W', 'X', 'Y', 'Z'}
 		};
-	public static StringBuilder encrypt(StringBuilder e) {
+	public static void encrypt(char a, char b, StringBuilder e,int pos1, int pos2) {
 		/* 
 		need to loop through ALL rows and columns
 		need to form bigram
 		*/
 		//need to find data structure that will loop only once
 		int line = 0;
+		//store row and column of char
 		int positionOfChar[] = new int[4];
-		for(int i = 0; i < e.length(); i = i + 3)
+		boolean found = false, found1 = false;
+		for(int j = 0; j < 5; j++)
 		{
-		for(int j = 0; i < 5; i++)
-		{
-			if(e.charAt(i) == matrix[line][i])
+			if(a == matrix[line][j])
 			{
 				positionOfChar[0] = line;
-				positionOfChar[1] = i;
+				positionOfChar[1] = j;
+				a =  matrix[positionOfChar[2]][positionOfChar[1]];
+				found = true;
 			}
-			else if(e.charAt(i + 1) == matrix[line + 5][i + 5])
+			else if(b == matrix[line][j + 5])
 			{
-				System.out.println("true");
-				positionOfChar[2] = line + 5;
+				positionOfChar[2] = j + 5;
 				positionOfChar[3] = j + 5;
-				e.setCharAt(j,  matrix[positionOfChar[2]][positionOfChar[1]]);
-				e.setCharAt(j + 1, matrix[positionOfChar[0]][positionOfChar[3]]);
-				System.out.println(e);
+				b = matrix[positionOfChar[0]][positionOfChar[3]];
+				e.setCharAt(pos1, a);
+				e.setCharAt(pos2, b);
+				found1 = true;
+			}
+			if(found == true && found1 == true)
+			{
 				break;
 			}
-			line++;
+			if(j == 4 && line < 9)
+			{
+				line++;
+				j = 0;
+				continue;
+			}
 		}
-		}
-		return e;
-		}
+ 	}
 	public static StringBuilder decrypt(StringBuilder d) {
 		//LOGIC WRONG
 		System.out.println("Decrypting...");

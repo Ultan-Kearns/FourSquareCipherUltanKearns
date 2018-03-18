@@ -13,9 +13,12 @@ public class Parser {
 		
 		for(int i = 2; i < e.length(); i = i + 2)
 		{ 
-			e.insert(i,' ');
+			int a = i - 2;
+			int b = i - 1;
+			FourSquareCipher.encrypt(e.charAt(i - 2),e.charAt(i - 1), e,a,b);
 			i++;
 		}
+		System.out.println(e);
 		return e;
 	}
 }
