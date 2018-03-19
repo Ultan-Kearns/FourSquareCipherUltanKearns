@@ -25,26 +25,31 @@ public class FourSquareCipher {
 		//store row and column of char
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
+
+		System.out.println(" CHAR 1: " + a + " Char 2: " + b);
 		for(int j = 0; j < 5; j++)
 		{
 			if(a == matrix[line][j])
 			{
+				System.out.println("Line: " + line + "  Position: " + j + " Char: " + a);
 				positionOfChar[0] = line;
 				positionOfChar[1] = j;
-				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				found = true;
 			}
-			else if(b == matrix[line][j + 5])
+			else if(b == matrix[line][j + 5] && line > 4)
 			{
-				positionOfChar[2] = j + 5;
+				positionOfChar[2] = line;
 				positionOfChar[3] = j + 5;
+				System.out.println("Line: " + line + "  Position: " + j + " Char: " + b);
+				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
-				e.setCharAt(pos1, a);
-				e.setCharAt(pos2, b);
+				e.setCharAt(pos1, b);
+				e.setCharAt(pos2, a);
 				found1 = true;
 			}
 			if(found == true && found1 == true)
 			{
+				System.out.println(" CHAR 1: " + a + " Char 2: " + b);
 				break;
 			}
 			if(j == 4 && line < 9)
