@@ -25,13 +25,15 @@ public class EncryptDecrypt {
 				System.out.println("invalid input");
 				fileName = console.next();
 			}
-			//test purposes
 			startTime = System.nanoTime();
 			FileReader file = new FileReader(fileName);
+			//O(log n)
 			BufferedReader fileScan = new BufferedReader(file);
 			String line = fileScan.readLine();
 			while (line != null) {
+				//O(1) Appends to end of string
 				e.append(line);
+				//O(1)
 				e.append('\n');
 				line = fileScan.readLine();
 			}
@@ -43,7 +45,6 @@ public class EncryptDecrypt {
 			console.nextLine();
 			UserInterface.run();
 		}
-		//test purposes
 		long totalTime = System.nanoTime() - startTime;
 		System.out.println("Time taken to read in: " + totalTime + " ns");
 		String temp = e.toString();
@@ -65,7 +66,9 @@ public class EncryptDecrypt {
 			}
 			else if(response == 2)
 			{
+				//O(N/2)
 				Parser.parse(encrypt,2);
+				//o(log n)
 				SaveFile.save(fileName, encrypt);
 				System.out.println("\nFile Saved");
 				UserInterface.run();

@@ -16,14 +16,13 @@ public class FourSquareCipher {
 			{'L', 'Q', 'Z', 'K', 'P', 'V', 'W', 'X', 'Y', 'Z'}
 		};
 	public static void encrypt(char a, char b, StringBuilder e,int pos1, int pos2) {
-		/* 
-		need to loop through ALL rows and columns
-		need to form bigram
-		*/
 		int line = 0;
 		//store row and column of char
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
+		/*
+		 * Worst Case: O(15) as it will have to check every line and character
+		 */
 		for(int j = 0; j < 5; j++)
 		{
 			if(a == matrix[line][j] && line < 5 && found != true)
@@ -38,6 +37,7 @@ public class FourSquareCipher {
 				positionOfChar[3] = j + 5;
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
+				//set char at O(1) as it just overwrites the character
 				e.setCharAt(pos1, b);
 				e.setCharAt(pos2, a);
 				found1 = true;
@@ -55,15 +55,13 @@ public class FourSquareCipher {
 		}
  	}
 	public static StringBuilder decrypt(char a, char b, StringBuilder d,int pos1, int pos2) {
-		/* 
-		need to loop through ALL rows and columns
-		need to form bigram
-		*/
-		//NOT DETECTING CHARS AT END OF LINE
 		int line = 0;
 		//store row and column of char
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
+		/*
+		 * Worst Case: O(15) as it will have to check every line and character
+		 */
 		for(int j = 0; j < 5; j++)
 		{
 			if(a == matrix[line][j + 5] && line < 5 && found != true)
@@ -78,6 +76,7 @@ public class FourSquareCipher {
 				positionOfChar[3] = j;
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
+				//O(1)
 				d.setCharAt(pos1, b);
 				d.setCharAt(pos2, a);
 				found1 = true;

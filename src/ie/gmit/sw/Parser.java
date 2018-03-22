@@ -6,6 +6,7 @@ public class Parser {
 		//Check if e is even
 		if(e.length() % 2 != 0)
 		{
+			//O(1) as it appends to end
 			e.append('Z');
 		}
 		//Big O(N / 2) As it is half the length of e
@@ -17,10 +18,12 @@ public class Parser {
 			int b = i + 1;
 			if(op == 1)
 			{
+				//Encrypt is O(log n) as it takes two characters at a time
 				FourSquareCipher.encrypt(e.charAt(a),e.charAt(b), e,a,b);
 			}
 			else
 			{
+				//Decrypt is O(log n) as it takes two characters at a time
 				FourSquareCipher.decrypt(e.charAt(a), e.charAt(b), e, a, b);
 			}
 			i++;
