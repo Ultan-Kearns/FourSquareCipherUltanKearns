@@ -20,7 +20,6 @@ public class FourSquareCipher {
 		need to loop through ALL rows and columns
 		need to form bigram
 		*/
-		//NOT DETECTING CHARS AT END OF LINE
 		int line = 0;
 		//store row and column of char
 		int positionOfChar[] = new int[4];
@@ -37,7 +36,6 @@ public class FourSquareCipher {
 			{
 				positionOfChar[2] = line;
 				positionOfChar[3] = j + 4;
-
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
 				e.setCharAt(pos1, b);
@@ -46,13 +44,12 @@ public class FourSquareCipher {
 			}
 			if(found == true && found1 == true)
 			{
-				System.out.println(" CHAR 1: " + a + " Char 2: " + b);
 				break;
 			}
 			if(j == 5 && line < 9)
 			{
 				line++;
-				j = 0;
+				j = -1;
 				continue;
 			}
 		}
@@ -69,19 +66,21 @@ public class FourSquareCipher {
 		//store row and column of char
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
+		System.out.println("INITIAL CHARACTERS Char 1: " + a + " Char 2: " + b);
 		for(int j = 0; j < 6; j++)
 		{
-			if(a == matrix[line][j] && line < 5)
+			if(a == matrix[line][j + 4] && line < 5 && found != true)
 			{
 				positionOfChar[0] = line;
-				positionOfChar[1] = j;
+				positionOfChar[1] = j + 4;
 				found = true;
+				System.out.println("Found Char 1: " + a + " At line: " + line + " Pos: " + (j + 4));
 			}
-			else if(b == matrix[line][j + 4] && line >= 5)
+			else if(b == matrix[line][j] && line >= 5)
 			{
 				positionOfChar[2] = line;
-				positionOfChar[3] = j + 4;
-
+				positionOfChar[3] = j;
+				System.out.println("Found Char 2: " + b + " At line: " + line + " Pos: " + j);
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
 				d.setCharAt(pos1, b);
@@ -90,13 +89,12 @@ public class FourSquareCipher {
 			}
 			if(found == true && found1 == true)
 			{
-				System.out.println(" CHAR 1: " + a + " Char 2: " + b);
 				break;
 			}
 			if(j == 5 && line < 9)
 			{
 				line++;
-				j = 0;
+				j = -1;
 				continue;
 			}
 		}

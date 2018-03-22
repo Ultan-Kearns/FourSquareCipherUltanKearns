@@ -1,7 +1,7 @@
 package ie.gmit.sw;
 
 public class Parser {
-	public static StringBuilder parse(StringBuilder e)
+	public static StringBuilder parse(StringBuilder e,int op)
 	{
 		//Check if e is even
 		if(e.length() % 2 != 0)
@@ -15,7 +15,14 @@ public class Parser {
 		{ 
 			int a = i;
 			int b = i + 1;
-			FourSquareCipher.encrypt(e.charAt(a),e.charAt(b), e,a,b);
+			if(op == 1)
+			{
+				FourSquareCipher.encrypt(e.charAt(a),e.charAt(b), e,a,b);
+			}
+			else
+			{
+				FourSquareCipher.decrypt(e.charAt(a), e.charAt(b), e, a, b);
+			}
 			i++;
 		}
 		return e;

@@ -53,19 +53,20 @@ public class EncryptDecrypt {
 		temp = null;
 		e = null;
 		System.out.println("\nPARSING");
-		Parser.parse(encrypt);
 		System.out.println("\nPlease enter the directory where you want to save file: ");
 		fileName = console.next();
 		try {
 			if(response == 1)
 			{
+				Parser.parse(encrypt,1);
 				SaveFile.save(fileName,encrypt);
 				System.out.println("\nFile Saved");
 				UserInterface.run();
 			}
-			else
+			else if(response == 2)
 			{
-				SaveFile.save(fileName, FourSquareCipher.decrypt(encrypt));
+				Parser.parse(encrypt,2);
+				SaveFile.save(fileName, encrypt);
 				System.out.println("\nFile Saved");
 				UserInterface.run();
 			}
