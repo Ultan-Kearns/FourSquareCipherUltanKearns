@@ -55,8 +55,6 @@ public class FourSquareCipher {
 		}
  	}
 	public static StringBuilder decrypt(char a, char b, StringBuilder d,int pos1, int pos2) {
-		//LOGIC WRONG
-		System.out.println("Decrypting...");
 		/* 
 		need to loop through ALL rows and columns
 		need to form bigram
@@ -66,10 +64,8 @@ public class FourSquareCipher {
 		//store row and column of char
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
-		System.out.println("INITIAL CHARACTERS Char 1: " + a + " Char 2: " + b);
 		for(int j = 0; j < 5; j++)
 		{
-			System.out.println(" Char 1: " + a + " At line: " + line + " Pos: " + (j + 5));
 			if(a == matrix[line][j + 5] && line < 5 && found != true)
 			{
 				positionOfChar[0] = line;
