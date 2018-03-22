@@ -24,18 +24,18 @@ public class FourSquareCipher {
 		//store row and column of char
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
-		for(int j = 0; j < 6; j++)
+		for(int j = 0; j < 5; j++)
 		{
-			if(a == matrix[line][j] && line < 5)
+			if(a == matrix[line][j] && line < 5 && found != true)
 			{
 				positionOfChar[0] = line;
 				positionOfChar[1] = j;
 				found = true;
 			}
-			else if(b == matrix[line][j + 4] && line >= 5)
+			else if(b == matrix[line][j + 5] && line >= 5 && found1 != true )
 			{
 				positionOfChar[2] = line;
-				positionOfChar[3] = j + 4;
+				positionOfChar[3] = j + 5;
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
 				e.setCharAt(pos1, b);
@@ -46,7 +46,7 @@ public class FourSquareCipher {
 			{
 				break;
 			}
-			if(j == 5 && line < 9)
+			if(j == 4 && line < 9)
 			{
 				line++;
 				j = -1;
@@ -67,20 +67,19 @@ public class FourSquareCipher {
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
 		System.out.println("INITIAL CHARACTERS Char 1: " + a + " Char 2: " + b);
-		for(int j = 0; j < 6; j++)
+		for(int j = 0; j < 5; j++)
 		{
-			if(a == matrix[line][j + 4] && line < 5 && found != true)
+			System.out.println(" Char 1: " + a + " At line: " + line + " Pos: " + (j + 5));
+			if(a == matrix[line][j + 5] && line < 5 && found != true)
 			{
 				positionOfChar[0] = line;
-				positionOfChar[1] = j + 4;
+				positionOfChar[1] = j + 5;
 				found = true;
-				System.out.println("Found Char 1: " + a + " At line: " + line + " Pos: " + (j + 4));
 			}
-			else if(b == matrix[line][j] && line >= 5)
+			else if(b == matrix[line][j] && line >= 5 && found1 != true)
 			{
 				positionOfChar[2] = line;
 				positionOfChar[3] = j;
-				System.out.println("Found Char 2: " + b + " At line: " + line + " Pos: " + j);
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
 				d.setCharAt(pos1, b);
@@ -91,7 +90,7 @@ public class FourSquareCipher {
 			{
 				break;
 			}
-			if(j == 5 && line < 9)
+			if(j == 4 && line < 9)
 			{
 				line++;
 				j = -1;
