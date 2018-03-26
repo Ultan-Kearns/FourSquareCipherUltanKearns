@@ -26,9 +26,8 @@ public class UserInterface {
 			EncryptDecrypt.setup(2);
 			break;
 		case 3:
-			//allow users to set keys 25 or generate keys yourself use collections.shuffle
 			System.out.println("Set Keys: ");
-			input.nextLine();
+			SetKeys.setKey();
 			break;
 		case 4:
 			System.exit(0);
