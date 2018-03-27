@@ -1,6 +1,9 @@
 package ie.gmit.sw;
 //Code by Ultan Kearns
 
+import java.io.IOException;
+import java.util.Scanner;
+
 public class FourSquareCipher {
 	//replace first five letters from rows with letters from last five
 	private static char[][] matrix = {
@@ -21,10 +24,18 @@ public class FourSquareCipher {
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
 		/*
-		 * Worst Case: O(15) as it will have to check every line and character
+		 *  O(log n) as it takes 2 characters
 		 */
 		for(int j = 0; j < 5; j++)
 		{
+			if(a == 'J')
+			{
+				a = 'I';
+			}
+			if(b == 'J')
+			{
+				b = 'I';
+			}
 			if(a == matrix[line][j] && line < 5 && found != true)
 			{
 				positionOfChar[0] = line;
@@ -60,7 +71,7 @@ public class FourSquareCipher {
 		int positionOfChar[] = new int[4];
 		boolean found = false, found1 = false;
 		/*
-		 * Worst Case: O(15) as it will have to check every line and character
+		 * O(log n) as it takes 2 characters
 		 */
 		for(int j = 0; j < 5; j++)
 		{
@@ -93,5 +104,38 @@ public class FourSquareCipher {
 			}
 		}
 		return d;
+	}
+	public static void setKey() throws IOException {
+		int line = 0;
+		char replace = 0;
+		Scanner console = new Scanner(System.in);
+		//Need to remove dupes(maybe use set)
+		for(int i = 0; i < 5; i++)
+		{
+			if(line < 5)
+			{
+				System.out.println("\nEnter decimal to exit\nPlease enter character for Line " + line  + " position " + (i  +  5)  +  ": ");
+			}
+			else
+			{
+				System.out.println("\nEnter decimal to exit\n\nPlease enter character for position " + i  + " Line " + line  + ": ");
+			}
+			//check if decimal is entered
+			if(replace <= 57 && replace >= 48)
+			{
+				System.out.println("\nDecimal entered keys are set\n");
+				break;
+			}
+			replace = console.next().charAt(0);
+			matrix[line][i] = replace;
+			if(i == 4 && line < 9)
+			{
+				i = -1;
+				line++;
+				continue;
+			}
+		}
+		UserInterface.run();
+		console.close();
 	}
 }

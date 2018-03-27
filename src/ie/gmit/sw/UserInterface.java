@@ -8,6 +8,7 @@ public class UserInterface {
 	private static Scanner input = new Scanner(System.in);
 	static int response;
 	public static void run() throws IOException {
+		//need to add URL support add getinputstream
 		System.out.println("1.Encrypt\n2.Decrypt\n3.Set Keys\n4.Exit");
 		System.out.print("Choose option: ");
 		try{
@@ -27,7 +28,7 @@ public class UserInterface {
 			break;
 		case 3:
 			System.out.println("Set Keys: ");
-			SetKeys.setKey();
+			FourSquareCipher.setKey();
 			break;
 		case 4:
 			System.exit(0);

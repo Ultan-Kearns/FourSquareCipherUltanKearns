@@ -1,5 +1,6 @@
 package ie.gmit.sw;
 
+ 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,9 +8,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class EncryptDecrypt {
+	// change to file path also need to specify if URL
 	public static void setup(int response) throws IOException {
 		Scanner console = new Scanner(System.in);
-		// change to file path also need to specify if URL
 		StringBuilder e = new StringBuilder();
 		//test purposes
 		long startTime = 0;
@@ -36,6 +37,7 @@ public class EncryptDecrypt {
 				e.append('\n');
 				line = fileScan.readLine();
 			}
+			System.out.println("Plaintext: " + e.toString());
 			 file.close();
 			 fileScan.close();
 		} catch (FileNotFoundException e1) {
@@ -62,6 +64,7 @@ public class EncryptDecrypt {
 				System.out.println("\nFile Saved");
 				long totalTime = System.nanoTime() - startTime;
 				System.out.println("Time taken to read in: " + totalTime + " ns");
+				System.out.println("\nEncrypted: " + encrypt.toString());
 				UserInterface.run();
 			}
 			else if(response == 2)
@@ -70,6 +73,7 @@ public class EncryptDecrypt {
 				Parser.parse(encrypt,2);
 				//o(log n)
 				SaveFile.save(fileName, encrypt);
+				System.out.println("Decrypted: " + encrypt.toString());
 				System.out.println("\nFile Saved");
 				UserInterface.run();
 			}
