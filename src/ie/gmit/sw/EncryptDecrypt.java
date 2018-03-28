@@ -55,15 +55,14 @@ public class EncryptDecrypt {
 		System.out.println("\nPARSING");
 		System.out.println("\nPlease enter the directory where you want to save file: ");
 		fileName = console.next();
+		startTime = System.nanoTime();
+		long totalTime = 0;
 		try {
 			if(response == 1)
 			{
-				startTime = System.nanoTime();
 				Parser.parse(encrypt,1);
 				SaveFile.save(fileName,encrypt);
 				System.out.println("\nFile Saved");
-				long totalTime = System.nanoTime() - startTime;
-				System.out.println("Time taken to read in: " + totalTime + " ns");
 				System.out.println("\nEncrypted: " + encrypt.toString());
 				UserInterface.run();
 			}
@@ -77,6 +76,8 @@ public class EncryptDecrypt {
 				System.out.println("\nFile Saved");
 				UserInterface.run();
 			}
+			totalTime = System.nanoTime() - startTime;
+			System.out.println("Time taken: " + totalTime + " ns");
 			console.close();
 		} catch (Exception SaveFail) {
 			System.out.println("Invalid input or file not found\n Try running as admin?\n");

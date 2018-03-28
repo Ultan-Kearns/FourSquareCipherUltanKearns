@@ -108,6 +108,7 @@ public class FourSquareCipher {
 	public static void setKey() throws IOException {
 		int line = 0;
 		char replace = 0;
+		System.out.println("Set Keys: ");
 		Scanner console = new Scanner(System.in);
 		//Need to remove dupes(maybe use set)
 		for(int i = 0; i < 5; i++)
