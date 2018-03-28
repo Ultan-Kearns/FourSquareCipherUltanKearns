@@ -30,14 +30,30 @@ public class UserInterface {
 			FourSquareCipher.setKey();
 			break;
 		case 4:
+			try
+			{
 			System.out.println("\nPlease enter URL: ");
 			userUrl = input.next();
 			UrlEncrypt.urlSetup(userUrl, 1);
+			}
+			catch(Exception e)
+			{
+				System.out.println("\nInvalid URL\n");
+				UserInterface.run();
+			}
 			break;
 		case 5:
+			try
+			{
 			System.out.println("\nPlease enter URL: ");
 			userUrl = input.next();
 			UrlEncrypt.urlSetup(userUrl, 2);
+			}
+			catch(Exception e)
+			{
+				System.out.println("\nInvalid URL\n");
+				UserInterface.run();
+			}
 			break;
 		case 6:
 			System.exit(0);

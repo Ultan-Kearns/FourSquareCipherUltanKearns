@@ -128,7 +128,8 @@ public class FourSquareCipher {
 				break;
 			}
 			replace = console.next().charAt(0);
-			matrix[line][i] = replace;
+			//O(1) toUpperCase is a constant time operation on a character
+			matrix[line][i] = Character.toUpperCase(replace);
 			if(i == 4 && line < 9)
 			{
 				i = -1;

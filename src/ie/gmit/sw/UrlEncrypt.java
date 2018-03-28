@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class UrlEncrypt {
 	public static void urlSetup(String urlLink,int response) throws IOException
 	{
+		
 		Scanner console = new Scanner(System.in);
 		URL url = new URL(urlLink);
 		BufferedReader urlReader = new BufferedReader(new InputStreamReader(url.openStream()));
