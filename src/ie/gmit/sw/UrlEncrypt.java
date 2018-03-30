@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Scanner;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 public class UrlEncrypt {
 	public static void urlSetup(String urlLink,int response) throws IOException
@@ -22,11 +24,15 @@ public class UrlEncrypt {
 			urlText.append('\n');
 			line = urlReader.readLine();
 		}
-		System.out.println("Plaintext: " + urlText.toString());
 		urlReader.close();
 		String temp = urlText.toString();
 		temp = temp.replaceAll("[^a-zA-Z0-9<>]", "");
 		temp = temp.toUpperCase();
+		Document doc = (Document) Jsoup.parse(temp);
+		String title = doc.title();
+		String body = doc.body().text();
+		temp = title + body;
+		System.out.println("Plaintext: " + temp);
 		StringBuilder encrypt = new StringBuilder(temp);
 		System.out.println("\nPARSING");
 		System.out.println("\nPlease enter the directory where you want to save file: ");
