@@ -1,40 +1,30 @@
 package ie.gmit.sw;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.Scanner;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class UrlEncrypt {
 	public static void urlSetup(String urlLink,int response) throws IOException
 	{
 		
 		Scanner console = new Scanner(System.in);
-		URL url = new URL(urlLink);
-		BufferedReader urlReader = new BufferedReader(new InputStreamReader(url.openStream()));
-		StringBuilder urlText = new StringBuilder();
-		String line = urlReader.readLine();
-		while (line != null) {
-			//O(1) Appends to end of string
-			urlText.append(line);
-			//O(1)
-			urlText.append('\n');
-			line = urlReader.readLine();
+		Document doc = Jsoup.connect(urlLink).get();
+		String temp = "";
+		Elements pageElements = doc.body().select("*");
+		System.out.println("\nPlaintext: ");
+		for(Element pageElement: pageElements)
+		{
+			System.out.println(pageElement.text());
+			temp += pageElement.text();
 		}
-		urlReader.close();
-		String temp = urlText.toString();
-		temp = temp.replaceAll("[^a-zA-Z0-9<>]", "");
+		temp = temp.replaceAll("[^a-zA-Z]", "");
 		temp = temp.toUpperCase();
-		Document doc = (Document) Jsoup.parse(temp);
-		String title = doc.title();
-		String body = doc.body().text();
-		temp = title + body;
-		System.out.println("Plaintext: " + temp);
+		Jsoup.parse(temp);
 		StringBuilder encrypt = new StringBuilder(temp);
-		System.out.println("\nPARSING");
 		System.out.println("\nPlease enter the directory where you want to save file: ");
 		String fileName = console.next();
 		try {

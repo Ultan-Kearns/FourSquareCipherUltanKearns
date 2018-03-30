@@ -9,8 +9,7 @@ public class UserInterface {
 	static int response;
 	static String userUrl = new String();
 	public static void run() throws IOException {
-		//need to add URL support add getinputstream
-		System.out.println("1.Encrypt\n2.Decrypt\n3.Set Keys\n4.To encrypt URL\n5.To decrypt URL");
+		System.out.println("1.Encrypt\n2.Decrypt\n3.Set Keys\n4.To encrypt URL\n5.To decrypt URL\n6.To encrypt/decrypt word\n7.To exit");
 		System.out.print("Choose option: ");
 		try{
 		 response = input.nextInt();
@@ -56,6 +55,26 @@ public class UserInterface {
 			}
 			break;
 		case 6:
+			System.out.println("\nPlease enter text you would like to encrypt: ");
+			String userIn = input.next();
+			userIn = userIn.replaceAll("[^a-zA-Z0-9]", "");
+			userIn = userIn.toUpperCase();
+			StringBuilder userText = new StringBuilder(userIn);
+			System.out.println("\nEnter 1.For Encrypt 2.For Decrypt");
+			int userReply = input.nextInt();
+			if(userReply == 1)
+			{
+				Parser.parse(userText, 1);
+				System.out.println("Encrypted text: " +  userText.toString() + "\n");
+			}
+			else
+			{
+				Parser.parse(userText, 1);
+				System.out.println("Decrypted text: " +  userText + "\n");
+			}
+			run();
+			break;
+		case 7:
 			System.exit(0);
 			break;
 		default:

@@ -12,7 +12,6 @@ public class EncryptDecrypt {
 	public static void setup(int response) throws IOException {
 		Scanner console = new Scanner(System.in);
 		StringBuilder e = new StringBuilder();
-		//test purposes
 		long startTime = 0;
 		String fileName = "";
 		try {
@@ -53,16 +52,24 @@ public class EncryptDecrypt {
 		temp = null;
 		e = null;
 		System.out.println("\nPARSING");
-		System.out.println("\nPlease enter the directory where you want to save file: ");
-		fileName = console.next();
+		System.out.println("Do you want to save\t1.Yes\t2.No");
+		int save = console.nextInt();
+		if(save != 2)
+		{
+			System.out.println("\nPlease enter the directory where you want to save file: ");
+			fileName = console.next();
+		}
 		startTime = System.nanoTime();
 		long totalTime = 0;
 		try {
 			if(response == 1)
 			{
 				Parser.parse(encrypt,1);
-				SaveFile.save(fileName,encrypt);
-				System.out.println("\nFile Saved");
+				if(save != 2)
+				{
+					SaveFile.save(fileName,encrypt);
+					System.out.println("\nFile Saved");
+				}
 				System.out.println("\nEncrypted: " + encrypt.toString());
 				UserInterface.run();
 			}
@@ -71,9 +78,12 @@ public class EncryptDecrypt {
 				//O(N/2)
 				Parser.parse(encrypt,2);
 				//o(log n)
-				SaveFile.save(fileName, encrypt);
+				if(save != 2)
+				{
+					SaveFile.save(fileName, encrypt);
+					System.out.println("\nFile Saved");
+				}
 				System.out.println("Decrypted: " + encrypt.toString());
-				System.out.println("\nFile Saved");
 				UserInterface.run();
 			}
 			totalTime = System.nanoTime() - startTime;

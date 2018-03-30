@@ -28,6 +28,7 @@ public class FourSquareCipher {
 		 */
 		for(int j = 0; j < 5; j++)
 		{
+			//J is merged with I so change
 			if(a == 'J')
 			{
 				a = 'I';
