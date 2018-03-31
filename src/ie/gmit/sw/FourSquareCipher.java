@@ -26,7 +26,7 @@ public class FourSquareCipher {
 		/*
 		 *  O(log n) as it takes 2 characters
 		 */
-		for(int j = 0; j < 5; j++)
+		for(int i = 0; i < 5; i++)
 		{
 			//J is merged with I so change
 			if(a == 'J')
@@ -37,16 +37,16 @@ public class FourSquareCipher {
 			{
 				b = 'I';
 			}
-			if(a == matrix[line][j] && line < 5 && found != true)
+			if(a == matrix[line][i] && line < 5 && found != true)
 			{
 				positionOfChar[0] = line;
-				positionOfChar[1] = j;
+				positionOfChar[1] = i;
 				found = true;
 			}
-			else if(b == matrix[line][j + 5] && line >= 5 && found1 != true )
+			else if(b == matrix[line][i + 5] && line >= 5 && found1 != true )
 			{
 				positionOfChar[2] = line;
-				positionOfChar[3] = j + 5;
+				positionOfChar[3] = i + 5;
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
 				//set char at O(1) as it just overwrites the character
@@ -58,10 +58,10 @@ public class FourSquareCipher {
 			{
 				break;
 			}
-			if(j == 4 && line < 9)
+			if(i == 4 && line < 9)
 			{
 				line++;
-				j = -1;
+				i = -1;
 				continue;
 			}
 		}
@@ -74,18 +74,18 @@ public class FourSquareCipher {
 		/*
 		 * O(log n) as it takes 2 characters
 		 */
-		for(int j = 0; j < 5; j++)
+		for(int i = 0; i < 5; i++)
 		{
-			if(a == matrix[line][j + 5] && line < 5 && found != true)
+			if(a == matrix[line][i + 5] && line < 5 && found != true)
 			{
 				positionOfChar[0] = line;
-				positionOfChar[1] = j + 5;
+				positionOfChar[1] = i + 5;
 				found = true;
 			}
-			else if(b == matrix[line][j] && line >= 5 && found1 != true)
+			else if(b == matrix[line][i] && line >= 5 && found1 != true)
 			{
 				positionOfChar[2] = line;
-				positionOfChar[3] = j;
+				positionOfChar[3] = i;
 				a =  matrix[positionOfChar[2]][positionOfChar[1]];
 				b = matrix[positionOfChar[0]][positionOfChar[3]];
 				//O(1)
@@ -97,10 +97,10 @@ public class FourSquareCipher {
 			{
 				break;
 			}
-			if(j == 4 && line < 9)
+			if(i == 4 && line < 9)
 			{
 				line++;
-				j = -1;
+				i = -1;
 				continue;
 			}
 		}
